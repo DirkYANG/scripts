@@ -1,0 +1,5 @@
+'reinit'
+'open  F:\WRF_case\case_convection\xinjiang\bole_2016061600\observation\CMA\rain.ctl'
+'d gsamp'
+'draw shp F:\WRF_case\case_convection\xinjiang\bole_2016061600\observation\CMA\CHN_adm0.shp'
+'printim F:\WRF_case\case_convection\xinjiang\bole_2016061600\observation\station.png white'

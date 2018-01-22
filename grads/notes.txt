@@ -1,0 +1,49 @@
+#grads提取的时间重新排序
+'q time'
+x=subwrd(result,3)
+yr=substr(x,9,4)
+mn=substr(x,6,3)
+dy=substr(x,4,2)
+hr=substr(x,1,2)
+xx=yr mn dy hr
+#grads提取垂直层次
+'q dims'
+result=sublin(result,4)
+p=subwrd(result,6)
+'draw shp /Users/yangrui/soft/grads-2.1.0/shp/CHN_adm1.shp'
+*'draw title geopotential height 'p'hPa 'x' '
+'printim ./height'p'hpa/hgt'p'hpa_'xx'.png x1000 y1000 white'
+#画等值线时去除等值线标记的阴影
+'set clab masked'
+#画vector线加图例
+'set arrlab off'
+len = 0.5
+scale = 40 'm/s'
+vcx0= 8.3
+vcx1= 10.0
+vcy0= 7.1
+vcy1= 7.75
+xrit = vcx0/2+vcx1/2+0.25
+ybot = vcy0/2+vcy1/2-0.2
+'set arrscl 'len' 'scale
+'set line 0 1 2'
+'d skip(u,2);skip(v,2)'
+'draw recf 'vcx0' 'vcy0' 'vcx1' 'vcy1''
+'set string 1 c 3 0'
+'set strsiz 0.1 0.1'
+'draw string 'vcx0/2+vcx1/2' 'vcy0/2+vcy1/2+0.2' Reference Vector'
+'set line 1 1 6'
+'draw line 'vcx0' 'vcy0' 'vcx0' 'vcy1''
+'draw line 'vcx0' 'vcy0' 'vcx1' 'vcy0''
+rc = arrow(xrit-0.25,ybot+0.2,len,scale)
+
+function arrow(x,y,len,scale)
+'set line 1 1 4'
+'draw line 'x-len/2.' 'y' 'x+len/2.' 'y
+'draw line 'x+len/2.-0.05' 'y+0.025' 'x+len/2.' 'y
+'draw line 'x+len/2.-0.05' 'y-0.025' 'x+len/2.' 'y
+'set string 1 c'
+'set strsiz 0.1'
+'draw string 'x' 'y-0.15' 'scale 
+return
+;
